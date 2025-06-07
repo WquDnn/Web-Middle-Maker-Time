@@ -1,4 +1,4 @@
-fetch('http://api.weatherapi.com/v1/current.json?key=5d8b0b5d6fb24500869132736253105&q=kyiv&aqi=no')
+fetch('http://api.weatherapi.com/v1/forecast.json?key=5d8b0b5d6fb24500869132736253105&q=kyiv&aqi=no&days=3')
    .then(res => res.json())
    .then(data => {
       console.log(data)

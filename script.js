@@ -1,14 +1,16 @@
-fetch('http://api.weatherapi.com/v1/forecast.json?key=5d8b0b5d6fb24500869132736253105&q=kyiv&aqi=no&days=3')
+function getWeather(city, day){
+
+fetch(`http://api.weatherapi.com/v1/forecast.json?key=5d8b0b5d6fb24500869132736253105&q=${city}&aqi=no&days=3`)
    .then(res => res.json())
    .then(data => {
       console.log(data)
       document.querySelector(".weat").innerHTML = "Waether today - " + data.location.name
       document.querySelector(".city").innerHTML = data.location.name
-      let temp = document.querySelector(".temp").innerHTML = data.current.temp_c + "℃"
-      let humidity = document.querySelector(".humidity").innerHTML = data.current.humidity + "%"
-      let cloud = document.querySelector(".cloud").innerHTML = data.current.cloud + "%"
-      let pres = document.querySelector(".precip_in").innerHTML = data.current.precip_in + "%"
-      let feelslike = document.querySelector(".feelslike_c").innerHTML = data.current.feelslike_c + "℃"
+      let avgtemp_c = document.querySelector(".avgtemp_c").innerHTML = data.forecast.forecastday[day].day.avgtemp_c + "℃"
+      let avghumidity = document.querySelector(".avghumidity").innerHTML = data.forecast.forecastday[day].day.avghumidity + "%"
+      let maxwind_mph = document.querySelector(".maxwind_mph").innerHTML = data.forecast.forecastday[day].day.maxwind_mph + "%"
+      // let pres = document.querySelector(".precip_in").innerHTML = data.current.precip_in + "%"
+      let maxtemp_c = document.querySelector(".maxtemp_c").innerHTML = data.forecast.forecastday[day].day.maxtemp_c + "℃"
       
       document.querySelector(".stan").innerHTML = data.current.condition.text + `<img src="${data.current.condition.icon}">`
 
@@ -30,4 +32,10 @@ fetch('http://api.weatherapi.com/v1/forecast.json?key=5d8b0b5d6fb245008691327362
 
 
    })
+}
 
+getWeather("Kyiv", 0)
+
+document.querySelector(".Tommorow").addEventListener("click", function () {
+     getWeather("Kyiv", 1)
+})

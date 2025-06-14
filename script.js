@@ -2,7 +2,7 @@ fetch('http://api.weatherapi.com/v1/forecast.json?key=5d8b0b5d6fb245008691327362
    .then(res => res.json())
    .then(data => {
       console.log(data)
-      document.querySelector(".weat").innerHTML = "Waether today - " + data.location.name
+      document.querySelector(".weat").innerHTML = "Weather today - " + data.location.name
       document.querySelector(".city").innerHTML = data.location.name
       let temp = document.querySelector(".temp").innerHTML = data.current.temp_c + "℃"
       let humidity = document.querySelector(".humidity").innerHTML = data.current.humidity + "%"
@@ -31,3 +31,12 @@ fetch('http://api.weatherapi.com/v1/forecast.json?key=5d8b0b5d6fb245008691327362
 
    })
 
+document.querySelector("#input").addEventListener("input", (e)=>{
+   fetch(`http://api.weatherapi.com/v1/search.json?key=5d8b0b5d6fb24500869132736253105&q=${e.target.value}`).then(res => res.json()).then(data => {
+      document.querySelector("#list").innerHTML = data.map(city => `<option value="${city.name}"></option>`).join("")
+   })
+})
+
+document.querySelector("#search").addEventListener("click", ()=>{
+   
+})

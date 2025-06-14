@@ -14,10 +14,15 @@
 
 <body>
   <!-- Підключення локального скрипта -->
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 
   <header>
     <h1>Wherether</h1>
+    <input type="text" id="input" placeholder=" Search..." list="list">
+    <datalist id="list">
+      <option value="kyiv"></option>
+    </datalist>
+    <button id="search"><i class="fa-solid fa-magnifying-glass"></i></button>
   </header>
 
   <div class="wrapper">

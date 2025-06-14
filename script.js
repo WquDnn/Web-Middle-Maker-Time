@@ -6,11 +6,15 @@ fetch(`http://api.weatherapi.com/v1/forecast.json?key=5d8b0b5d6fb245008691327362
    .then(res => res.json())
    .then(data => {
       console.log(data)
+      if(data.error){
+         alertify.error(data.error.message)
+         return
+      }
       document.querySelector(".weat").innerHTML = "Weather today - " + data.location.name
       document.querySelector(".city").innerHTML = data.location.name
       let temp = document.querySelector(".temp").innerHTML = data.forecast.forecastday[day].day.avgtemp_c + "℃"
       let humidity = document.querySelector(".humidity").innerHTML = data.forecast.forecastday[day].day.avghumidity + "%"
-      let maxwind_mph = document.querySelector(".maxwind_mph").innerHTML = data.forecast.forecastday[day].day.maxwind_mph + "%"
+      // let maxwind_mph = document.querySelector(".maxwind_mph").innerHTML = data.forecast.forecastday[day].day.maxwind_mph + "%"
       let pres = document.querySelector(".precip_in").innerHTML = data.forecast.forecastday[1].day.totalprecip_in + "%"
       let maxtemp_c = document.querySelector(".maxtemp_c").innerHTML = data.forecast.forecastday[day].day.maxtemp_c + "℃"
       
@@ -27,15 +31,15 @@ fetch(`http://api.weatherapi.com/v1/forecast.json?key=5d8b0b5d6fb245008691327362
       //    console.log("Сонячно")
       // } else if (cloud >= 70 && humidity >= 40 && pres <= 20) {
         
-      //    document.body.style.background = "linear-gradient(rgb(110, 157, 157) 60%, rgba(240, 239, 239, 0.975))"
-      //    document.querySelector(".box").style.background = "url(https://media.acc.cv.ua/news/article/2019/02/02/41015/xwBR5Yr1tYrfgygXB3mA.w575.jpg)"
-      //    console.log("Хмарно")
-      // } else {
+         document.body.style.background = "linear-gradient(rgb(110, 157, 157) 60%, rgba(240, 239, 239, 0.975))"
+         document.querySelector(".box").style.background = "url(https://media.acc.cv.ua/news/article/2019/02/02/41015/xwBR5Yr1tYrfgygXB3mA.w575.jpg)"
+         console.log("Хмарно")
+      } else {
         
-      //    document.body.style.background = "linear-gradient(rgb(176, 228, 228) 60%, rgba(240, 239, 239, 0.975))"
-      //    document.querySelector(".box").style.background = "url(https://konkurent.ua/media/cache/71/95/71956ce3219d48d638ca06a70004d460.webp)"
-      //    console.log("Мінлива хмарність")
-      // }
+         document.body.style.background = "linear-gradient(rgb(176, 228, 228) 60%, rgba(240, 239, 239, 0.975))"
+         document.querySelector(".box").style.background = "url(https://konkurent.ua/media/cache/71/95/71956ce3219d48d638ca06a70004d460.webp)"
+         console.log("Мінлива хмарність")
+      }
 
 
    })
@@ -55,8 +59,6 @@ document.querySelector("#input").addEventListener("input", (e)=>{
 })
 
 document.querySelector("#search").addEventListener("click", ()=>{
-   if(){
       city = document.querySelector("#input").value
       getWeather(city, 0)
-   }
 })

@@ -1,5 +1,5 @@
 let city = "Kyiv"
-
+document.querySelector(".Today").classList.add("active")
 function getWeather(city, day) {
 
    fetch(`http://api.weatherapi.com/v1/forecast.json?key=5d8b0b5d6fb24500869132736253105&q=${city}&aqi=no&days=3`)
@@ -20,6 +20,7 @@ function getWeather(city, day) {
          let mintemp_c = document.querySelector(".mintemp_c").innerHTML = data.forecast.forecastday[day].day.mintemp_c + "℃"
          let chanceofrain = document.querySelector(".chanceofrain").innerHTML = data.forecast.forecastday[day].day.daily_chance_of_rain + "%"
          let feelsLike1 = document.querySelector(".feelsLike").innerHTML = feelsLike(data.forecast.forecastday[day].day.avgtemp_c, data.forecast.forecastday[day].day.avghumidity / 100) + "℃"
+         let tempnow = document.querySelector(".tempnow").innerHTML = data.current.temp_c + "℃"
 
 
 
@@ -39,34 +40,51 @@ function getWeather(city, day) {
             //    console.log("Сонячно")
             // } else if (cloud >= 70 && humidity >= 40 && pres <= 20) {
 
-               document.body.style.background = "linear-gradient(rgb(110, 157, 157) 60%, rgba(240, 239, 239, 0.975))"
-               document.querySelector(".box").style.background = "url(https://media.acc.cv.ua/news/article/2019/02/02/41015/xwBR5Yr1tYrfgygXB3mA.w575.jpg)"
-               console.log("Хмарно")
-            } else {
+            document.body.style.background = "linear-gradient(rgb(110, 157, 157) 60%, rgba(240, 239, 239, 0.975))"
+            document.querySelector(".box").style.background = "url(https://media.acc.cv.ua/news/article/2019/02/02/41015/xwBR5Yr1tYrfgygXB3mA.w575.jpg)"
+            console.log("Хмарно")
+         } else {
 
-               document.body.style.background = "linear-gradient(rgb(176, 228, 228) 60%, rgba(240, 239, 239, 0.975))"
-               document.querySelector(".box").style.background = "url(https://konkurent.ua/media/cache/71/95/71956ce3219d48d638ca06a70004d460.webp)"
-               console.log("Мінлива хмарність")
-            }
+            document.body.style.background = "linear-gradient(rgb(176, 228, 228) 60%, rgba(240, 239, 239, 0.975))"
+            document.querySelector(".box").style.background = "url(https://konkurent.ua/media/cache/71/95/71956ce3219d48d638ca06a70004d460.webp)"
+            console.log("Мінлива хмарність")
+         }
+
+         if (feelsLike1 == "Sunny") {
+
+         }
 
 
 
-         })
+      })
 }
 
 
 getWeather(city, 0)
 
-document.querySelector(".Tomorrow").addEventListener("click", function () {
+document.querySelector(".Tomorrow").addEventListener("click", function (e) {
    getWeather("Kyiv", 1)
+   document.querySelectorAll(".buttons button").forEach(b => {
+      b.classList.remove("active")
+   })
+   e.target.classList.add("active")
+
 })
 
-document.querySelector(".DAT").addEventListener("click", function () {
+document.querySelector(".DAT").addEventListener("click", function (e) {
    getWeather("Kyiv", 2)
+   document.querySelectorAll(".buttons button").forEach(b => {
+      b.classList.remove("active")
+   })
+   e.target.classList.add("active")
 })
 
-document.querySelector(".Today").addEventListener("click", function () {
+document.querySelector(".Today").addEventListener("click", function (e) {
    getWeather("Kyiv", 0)
+   document.querySelectorAll(".buttons button").forEach(b => {
+      b.classList.remove("active")
+   })
+   e.target.classList.add("active")
 })
 
 
@@ -97,3 +115,6 @@ function feelsLike(temp, humidity) {
 
    return Math.round((HI - 32) * 5 / 9);
 }
+
+
+

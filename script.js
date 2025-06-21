@@ -1,5 +1,5 @@
 let city = "Kyiv"
-
+document.querySelector(".Today").classList.add("active")
 function getWeather(city, day) {
 
    fetch(`http://api.weatherapi.com/v1/forecast.json?key=5d8b0b5d6fb24500869132736253105&q=${city}&aqi=no&days=3`)
@@ -20,6 +20,12 @@ function getWeather(city, day) {
          let mintemp_c = document.querySelector(".mintemp_c").innerHTML = data.forecast.forecastday[day].day.mintemp_c + "℃"
          let chanceofrain = document.querySelector(".chanceofrain").innerHTML = data.forecast.forecastday[day].day.daily_chance_of_rain + "%"
          let feelsLike1 = document.querySelector(".feelsLike").innerHTML = feelsLike(data.forecast.forecastday[day].day.avgtemp_c, data.forecast.forecastday[day].day.avghumidity / 100) + "℃"
+         let tempnow = document.querySelector(".tempnow").innerHTML = data.current.temp_c + "℃"
+
+
+
+
+
          
          
          
@@ -73,16 +79,29 @@ function getWeather(city, day) {
 
 getWeather(city, 0)
 
-document.querySelector(".Tomorrow").addEventListener("click", function () {
+document.querySelector(".Tomorrow").addEventListener("click", function (e) {
    getWeather(city, 1)
+   document.querySelectorAll(".buttons button").forEach(b => {
+      b.classList.remove("active")
+   })
+   e.target.classList.add("active")
+
 })
 
-document.querySelector(".DAT").addEventListener("click", function () {
+document.querySelector(".DAT").addEventListener("click", function (e) {
    getWeather(city, 2)
+   document.querySelectorAll(".buttons button").forEach(b => {
+      b.classList.remove("active")
+   })
+   e.target.classList.add("active")
 })
 
-document.querySelector(".Today").addEventListener("click", function () {
+document.querySelector(".Today").addEventListener("click", function (e) {
    getWeather(city, 0)
+   document.querySelectorAll(".buttons button").forEach(b => {
+      b.classList.remove("active")
+   })
+   e.target.classList.add("active")
 })
 
 
@@ -113,3 +132,6 @@ function feelsLike(temp, humidity) {
 
    return Math.round((HI - 32) * 5 / 9);
 }
+
+
+

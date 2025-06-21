@@ -1,7 +1,8 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "Roboto Condensed", sans-serif;
+  /* font-family: "Roboto Condensed", sans-serif; */
+    font-family: "Playfair Display", serif;
 }
 
 header {
@@ -76,7 +77,15 @@ body {
 .box .stan {
   padding: 0 5px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+}
+
+.box .tempnow, .temprn{
+  font-size: 30px;
+}
+
+.box .tempnow {
+  padding: 0 5px;
 }
 
 .box2 section {
@@ -122,22 +131,46 @@ body {
   margin: 0 auto;
   align-items: center;
   margin-top: 10px;
+
 }
 
 .buttons button {
-  height: 20px;
+  padding: 0.3rem;
+  font-size: 1rem;
   flex-grow: 1;
   background-color: white;
   color: black;
   border: none;
   border-radius: 5px;
+  transition: all 0.5s;
 }
 
 #input {
-  background-color: rgba(255, 255, 255, 0.303);
-  color: white;
+  background-color: rgb(255, 255, 255);
+  color: rgb(5, 2, 2);
+  border: none;
+  padding: 0.3rem 2rem 0.3rem 1rem;
+  font-weight: bolder;
+  border-radius: 4444px;
+  outline:  none;
 }
 
 /* #input ::placeholder{
   color: white;
 } */
+
+#search{
+  margin-left: -1.8rem;
+  background-color: transparent;
+  border: none;
+}
+
+.buttons button:hover {
+  opacity:  0.5;
+  
+}
+
+button.active {
+  background-color: rgba(0, 0, 255, 0.285);
+  box-shadow: 0 5px 2px rgba(0, 0, 134, 0.352);
+}

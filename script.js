@@ -2,7 +2,7 @@ let city = "Kyiv"
 document.querySelector(".Today").classList.add("active")
 function getWeather(city, day) {
 
-   fetch(`http://api.weatherapi.com/v1/forecast.json?key=5d8b0b5d6fb24500869132736253105&q=${city}&aqi=no&days=3`)
+   fetch(`https://api.weatherapi.com/v1/forecast.json?key=5d8b0b5d6fb24500869132736253105&q=${city}&aqi=no&days=3`)
       .then(res => res.json())
       .then(data => {
          console.log(data)
@@ -63,7 +63,8 @@ function getWeather(city, day) {
 getWeather(city, 0)
 
 document.querySelector(".Tomorrow").addEventListener("click", function (e) {
-   getWeather("Kyiv", 1)
+   document.querySelector(".tempnow")
+   getWeather(city, 1)
    document.querySelectorAll(".buttons button").forEach(b => {
       b.classList.remove("active")
    })
@@ -72,7 +73,7 @@ document.querySelector(".Tomorrow").addEventListener("click", function (e) {
 })
 
 document.querySelector(".DAT").addEventListener("click", function (e) {
-   getWeather("Kyiv", 2)
+   getWeather(city, 2)
    document.querySelectorAll(".buttons button").forEach(b => {
       b.classList.remove("active")
    })
@@ -80,7 +81,7 @@ document.querySelector(".DAT").addEventListener("click", function (e) {
 })
 
 document.querySelector(".Today").addEventListener("click", function (e) {
-   getWeather("Kyiv", 0)
+   getWeather(city, 0)
    document.querySelectorAll(".buttons button").forEach(b => {
       b.classList.remove("active")
    })
@@ -89,7 +90,7 @@ document.querySelector(".Today").addEventListener("click", function (e) {
 
 
 document.querySelector("#input").addEventListener("input", (e) => {
-   fetch(`http://api.weatherapi.com/v1/search.json?key=5d8b0b5d6fb24500869132736253105&q=${e.target.value}`).then(res => res.json()).then(data => {
+   fetch(`https://api.weatherapi.com/v1/search.json?key=5d8b0b5d6fb24500869132736253105&q=${e.target.value}`).then(res => res.json()).then(data => {
       document.querySelector("#list").innerHTML = data.map(city => `<option value="${city.name}"></option>`).join("")
    })
 })

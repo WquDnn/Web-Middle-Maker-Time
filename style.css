@@ -48,6 +48,10 @@ body {
   grid-row-gap: 1rem;
 }
 
+.box2 section{
+  padding: 0px 10px;
+}
+
 @media(max-width: 800px) {
 
   .box,
@@ -103,7 +107,7 @@ body {
   padding: 5px;
 }
 
-.feel {
+.feelLike {
   padding: 0 5px;
 }
 
